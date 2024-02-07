@@ -6,8 +6,8 @@ static const unsigned int gappx     = 8;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=14" };
-static const char dmenufont[]       = "monospace:size=14";
+static const char *fonts[]          = { "JetBrains Mono Nerd Font:size=14" };
+static const char dmenufont[]       = "JetBrains Mono Nerd Font:size=14";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -64,6 +64,11 @@ static const char *termcmd[]  = { "alacritty", NULL };
 static const char *shutdown[] = { "shutdown", "now", NULL };
 static const char *restart[]  = { "reboot", NULL };
 
+/* volume */
+static const char *volup[]    = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *voldown[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+static const char *volmute[]  = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -80,6 +85,9 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
   { MODKEY,                       XK_Tab,    focusstack,     {.i = +1 } },
   { MODKEY|ShiftMask,             XK_Tab,    focusstack,     {.i = -1 } },
+  { MODKEY,                       XK_F11,    spawn,          {.v = volup } },
+  { MODKEY,                       XK_F10,    spawn,          {.v = voldown } },
+  { MODKEY,                       XK_F9,     spawn,          {.v = volmute } },
   { ALTKEY|ShiftMask,             XK_F4,     spawn,          {.v = shutdown } },
   { ALTKEY|ShiftMask,             XK_F5,     spawn,          {.v = restart } },
 	TAGKEYS(                        XK_1,                      0)

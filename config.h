@@ -17,6 +17,7 @@ static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_menu,  col_menu  },
+	[SchemeHid]  = { col_menu,  col_gray1, col_menu  },
 };
 
 /* tagging */
@@ -83,8 +84,13 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-  { MODKEY,                       XK_Tab,    focusstack,     {.i = +1 } },
-  { MODKEY|ShiftMask,             XK_Tab,    focusstack,     {.i = -1 } },
+  { MODKEY,                       XK_Tab,    focusstackvis,  {.i = +1 } },
+  { MODKEY|ShiftMask,             XK_Tab,    focusstackvis,  {.i = -1 } },
+  { MODKEY,                       XK_grave,  focusstackhid,  {.i = +1 } },
+  { MODKEY|ShiftMask,             XK_grave,  focusstackhid,  {.i = -1 } },
+  { MODKEY,                       XK_s,      show,           {.i = -1 } },
+  { MODKEY|ShiftMask,             XK_s,      showall,        {.i = -1 } },
+  { MODKEY,                       XK_h,      hide,           {.i = -1 } },
   { MODKEY,                       XK_F11,    spawn,          {.v = volup } },
   { MODKEY,                       XK_F10,    spawn,          {.v = voldown } },
   { MODKEY,                       XK_F9,     spawn,          {.v = volmute } },
@@ -107,6 +113,7 @@ static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+	{ ClkWinTitle,          0,              Button1,        togglewin,      {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },

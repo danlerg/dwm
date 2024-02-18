@@ -65,7 +65,7 @@ static const char *termcmd[]  = { "alacritty", NULL };
 static const char *shutdown[] = { "shutdown", "now", NULL };
 static const char *restart[]  = { "reboot", NULL };
 
-/* volume */
+/* volume (for pipewire) */
 static const char *volup[]    = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *voldown[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 static const char *volmute[]  = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
